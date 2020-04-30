@@ -2,13 +2,22 @@ import java.util.Arrays;
 
 public class automaton
 {
+    private int autoLength;
+    private int generations;
+    private int[] updateRule;
+
+    public Automaton(int autoLength, int generations, int[] updateRule)
+    {
+        this.autoLength = autoLength;
+        this.generations = generations;
+        this.updateRule = updateRule;
+    }
 
     public static<T> T[] subArray(T[] array, int beg, int end)
     {
         return Arrays.copyOfRange(array, beg, end);
     }
 
-    public
     public static void main (String [] args)
     {
         int autoLength = Integer.parseInt(args[0]);
@@ -21,7 +30,7 @@ public class automaton
             updateRule[i] = Integer.parseInt(temp[i]);
         }
 
-        makeGen0(autoLength);
+
     }
 
 }
