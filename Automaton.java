@@ -5,17 +5,28 @@ public class automaton
     private int autoLength;
     private int generations;
     private int[] updateRule;
+    private int[][] output;
 
     public Automaton(int autoLength, int generations, int[] updateRule)
     {
         this.autoLength = autoLength;
         this.generations = generations;
         this.updateRule = updateRule;
+        this.output = new int[generations][autoLength];
     }
 
     public static<T> T[] subArray(T[] array, int beg, int end)
     {
         return Arrays.copyOfRange(array, beg, end);
+    }
+
+    public void insertGen0()
+    {
+        
+    }
+    public int[][] fillOutputMatrix()
+    {
+        insertGen0();
     }
 
     public static void main (String [] args)
@@ -30,6 +41,8 @@ public class automaton
             updateRule[i] = Integer.parseInt(temp[i]);
         }
 
+        Automaton a = new Automaton(autoLength, generations, updateRule);
+        System.out.println(a.fillOutputMatrix());
 
     }
 
