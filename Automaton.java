@@ -1,6 +1,6 @@
-import java.util.Arrays;
+import java.util.*;
 
-public class automaton
+public class Automaton
 {
     private int autoLength;
     private int generations;
@@ -20,15 +20,36 @@ public class automaton
         return Arrays.copyOfRange(array, beg, end);
     }
 
+    public int determineRandNumber()
+    {
+        if(Math.random() < 0.5)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
     public void insertGen0()
     {
-        
+        for(int c = 0; c < autoLength; c++)
+        {
+            output[0][c] = determineRandNumber();
+        }
     }
+
     public int[][] fillOutputMatrix()
     {
         insertGen0();
+        return output;
     }
 
+    public static void print2DMatrix(int mat[][])
+    {
+        for (int[] row : mat)
+            System.out.println(Arrays.toString(row));
+    }
     public static void main (String [] args)
     {
         int autoLength = Integer.parseInt(args[0]);
@@ -42,7 +63,7 @@ public class automaton
         }
 
         Automaton a = new Automaton(autoLength, generations, updateRule);
-        System.out.println(a.fillOutputMatrix());
+        print2DMatrix(a.fillOutputMatrix());
 
     }
 
