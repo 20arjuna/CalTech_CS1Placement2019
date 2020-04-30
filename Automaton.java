@@ -31,7 +31,7 @@ public class Automaton
             return 1;
         }
     }
-    public static void insertGen0()
+    public void insertGen0()
     {
         for(int c = 0; c < autoLength; c++)
         {
@@ -43,9 +43,9 @@ public class Automaton
     {
         int updateSum = 0;
         insertGen0();
-        for(int row = 1; row < autoLength; row ++)
+        for(int row = 1; row < generations; row ++)
         {
-            for(int column = 0; column < generations; column++)
+            for(int column = 0; column < autoLength; column++)
             {
                 if(column == 0)
                 {
@@ -62,6 +62,7 @@ public class Automaton
                 output[row][column] = updateRule[updateSum];
             }
         }
+        return output;
     }
 
     public static void print2DMatrix(int mat[][])
