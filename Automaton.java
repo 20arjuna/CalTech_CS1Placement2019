@@ -20,7 +20,7 @@ public class Automaton
         return Arrays.copyOfRange(array, beg, end);
     }
 
-    public int determineRandNumber()
+    public static int determineRandNumber()
     {
         if(Math.random() < 0.5)
         {
@@ -31,7 +31,7 @@ public class Automaton
             return 1;
         }
     }
-    public void insertGen0()
+    public static void insertGen0()
     {
         for(int c = 0; c < autoLength; c++)
         {
@@ -41,8 +41,27 @@ public class Automaton
 
     public int[][] fillOutputMatrix()
     {
+        int updateSum = 0;
         insertGen0();
-        return output;
+        for(int row = 1; row < autoLength; row ++)
+        {
+            for(int column = 0; column < generations; column++)
+            {
+                if(column == 0)
+                {
+                    updateSum = 0 + output[row-1][column] + output[row-1][column+1];
+                }
+                else if(column == autoLength-1)
+                {
+                    updateSum = output[row-1][column-1] + output[row-1][column] + 0;
+                }
+                else
+                {
+                    updateSum = output[row-1][column-1] + output[row-1][column] + output[row-1][column+1];
+                }
+                output[row][column] = updateRule[updateSum];
+            }
+        }
     }
 
     public static void print2DMatrix(int mat[][])
